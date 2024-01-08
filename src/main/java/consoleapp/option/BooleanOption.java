@@ -16,6 +16,7 @@ public class BooleanOption implements Option<Boolean>{
         this.name = name;
         this.description = description;
         this.aliases = aliases;
+        validateAliases(new AliasChecker());
     }
 
     public BooleanOption(String name, String description, Set<String> aliases, Set<String> trueValues, Set<String> falseValues) {

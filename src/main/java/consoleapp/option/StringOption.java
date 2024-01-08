@@ -28,7 +28,7 @@ public class StringOption implements Option<String>{
         validateAliases(new AliasChecker());
     }
 
-    //constuctors with only min/max
+    //constuctors with combinations of min, max and value
 
     @Override
     public String getName() {

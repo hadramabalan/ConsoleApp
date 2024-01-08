@@ -1,14 +1,21 @@
 package consoleapp.processor;
 
+import consoleapp.option.BooleanOption;
 import consoleapp.option.Option;
 import consoleapp.option.provider.CustomOptionProvider;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class DefaultOptionProcessor implements OptionProcessor {
     private final Map<String, Option<?>> options = new HashMap<>();
     private final Map<String, CustomOptionProvider<?>> customOptionProviders = new HashMap<>();
+
+    public DefaultOptionProcessor() {
+        // Reserved help option
+        options.put("help", new BooleanOption("h", "Help", Set.of("-h", "--help")));
+    }
 
     @Override
     public <T> void addOption(String name, Option<T> option) {
@@ -17,6 +24,9 @@ public class DefaultOptionProcessor implements OptionProcessor {
 
     @Override
     public void processOptions(String[] args) {
+        if (hasOption("help")) {
+            displayHelp();
+        }
         // parse command line and update option values
     }
 
@@ -43,4 +53,5 @@ public class DefaultOptionProcessor implements OptionProcessor {
         //implementation
         //is default behavior of handling exceptions ok or should it be customizable?
     }
+    private void displayHelp() {}
 }

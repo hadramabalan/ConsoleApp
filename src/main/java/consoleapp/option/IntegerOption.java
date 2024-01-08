@@ -29,7 +29,17 @@ public class IntegerOption implements Option<Integer>{
         validateAliases(new AliasChecker());
     }
 
-    //constructors with only min/max
+    public IntegerOption(String name, String description, Set<String> aliases, Integer minValue, Integer maxValue, int value) {
+        this.name = name;
+        this.description = description;
+        this.aliases = aliases;
+        this.minValue = minValue;
+        this.maxValue = maxValue;
+        this.value = value;
+        validateAliases(new AliasChecker());
+    }
+
+    //constructors with combinations of value, min and max
 
     public String getName() {
         return name;

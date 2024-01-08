@@ -10,5 +10,5 @@ public interface OptionProcessor {
     <T> T getOptionValue(String option, Class<T> type);
     boolean hasOption(String option);
     <T> void registerCustomOptionProvider(CustomOptionProvider<T> customOptionProvider);
-
+    private void displayHelp() {}
 }
