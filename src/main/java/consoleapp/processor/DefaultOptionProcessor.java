@@ -21,7 +21,7 @@ public class DefaultOptionProcessor implements OptionProcessor {
     }
 
     @Override
-    public <T> T getOptionValue(String option) {
+    public <T> T getOptionValue(String option, Class<T> type) {
         // Implementation to retrieve the value of the specified option
         @SuppressWarnings("unchecked")
         Option<T> typedOption = (Option<T>) options.get(option);

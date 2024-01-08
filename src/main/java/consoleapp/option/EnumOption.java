@@ -1,13 +1,23 @@
 package consoleapp.option;
 
+import consoleapp.aliaschecker.AliasChecker;
+
 import java.util.Set;
 
-public class EnumOption implements Option<String>{
+public class EnumOption<T> implements Option<T>{
     private String name;
     private String description;
     private Set<String> aliases;
-    private Set<String> enumValues;
-    private String value;
+    private Set<T> enumValues;
+    private T value;
+
+    public EnumOption(String name, String description, Set<String> aliases, Set<T> enumValues) {
+        this.name = name;
+        this.description = description;
+        this.aliases = aliases;
+        this.enumValues = enumValues;
+        validateAliases(new AliasChecker());
+    }
 
     @Override
     public String getName() {
@@ -24,7 +34,10 @@ public class EnumOption implements Option<String>{
         return aliases;
     }
 
-    public String getValue() {
+    public T getValue() {
         return value;
+    }
+    public Set<T> getEnumValues() {return enumValues;}
+    public void setValue(String value) {
     }
 }

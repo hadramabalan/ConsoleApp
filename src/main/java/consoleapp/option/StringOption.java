@@ -1,14 +1,34 @@
 package consoleapp.option;
 
+import consoleapp.aliaschecker.AliasChecker;
+
 import java.util.Set;
 
 public class StringOption implements Option<String>{
     private String name;
     private String description;
     private Set<String> aliases;
-    private int minLength;
-    private int maxLength;
+    private Integer minLength = null;
+    private Integer maxLength = null;
     private String value;
+
+    public StringOption(String name, String description, Set<String> aliases) {
+        this.name = name;
+        this.description = description;
+        this.aliases = aliases;
+        validateAliases(new AliasChecker());
+    }
+
+    public StringOption(String name, String description, Set<String> aliases, Integer minLength, Integer maxLength) {
+        this.name = name;
+        this.description = description;
+        this.aliases = aliases;
+        this.minLength = minLength;
+        this.maxLength = maxLength;
+        validateAliases(new AliasChecker());
+    }
+
+    //constuctors with only min/max
 
     @Override
     public String getName() {
@@ -28,4 +48,6 @@ public class StringOption implements Option<String>{
     public String getValue() {
         return value;
     }
+
+    public void setValue(String value){}
 }

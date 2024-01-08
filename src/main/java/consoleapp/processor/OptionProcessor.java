@@ -7,7 +7,7 @@ public interface OptionProcessor {
     <T> void addOption(String name, Option<T> option);
 
     void processOptions(String[] args);
-    <T> T getOptionValue(String option);
+    <T> T getOptionValue(String option, Class<T> type);
     boolean hasOption(String option);
     <T> void registerCustomOptionProvider(CustomOptionProvider<T> customOptionProvider);
 

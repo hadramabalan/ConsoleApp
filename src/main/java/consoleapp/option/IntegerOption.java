@@ -1,5 +1,7 @@
 package consoleapp.option;
 
+import consoleapp.aliaschecker.AliasChecker;
+
 import java.util.Set;
 
 public class IntegerOption implements Option<Integer>{
@@ -7,12 +9,28 @@ public class IntegerOption implements Option<Integer>{
     private String description;
     private Set<String> aliases;
 
-    private int minValue;
-    private int maxValue;
+    private Integer minValue = null;
+    private Integer maxValue = null;
     private int value;
 
-    public IntegerOption(String name, String description, int minValue, int maxValue, Set<String> aliases) {
+    public IntegerOption(String name, String description, Set<String> aliases) {
+        this.name = name;
+        this.description = description;
+        this.aliases = aliases;
+        validateAliases(new AliasChecker());
     }
+
+    public IntegerOption(String name, String description, Set<String> aliases, Integer minValue, Integer maxValue) {
+        this.name = name;
+        this.description = description;
+        this.aliases = aliases;
+        this.minValue = minValue;
+        this.maxValue = maxValue;
+        validateAliases(new AliasChecker());
+    }
+
+    //constructors with only min/max
+
     public String getName() {
         return name;
     }
@@ -27,4 +45,5 @@ public class IntegerOption implements Option<Integer>{
     public Integer getValue() {
         return value;
     }
+    public void setValue(int value){}
 }

@@ -1,17 +1,30 @@
 package consoleapp.option;
 
+import consoleapp.aliaschecker.AliasChecker;
+
 import java.util.Set;
 
 public class BooleanOption implements Option<Boolean>{
     private String name;
     private String description;
     private Set<String> aliases;
-
     private Set<String> trueValues;
     private Set<String> falseValues;
-    private boolean value;
+    private boolean value = true;
 
-    public BooleanOption(String name, String description, Set<String> trueValues, Set<String> falseValues) {
+    public BooleanOption(String name, String description, Set<String> aliases) {
+        this.name = name;
+        this.description = description;
+        this.aliases = aliases;
+    }
+
+    public BooleanOption(String name, String description, Set<String> aliases, Set<String> trueValues, Set<String> falseValues) {
+        this.name = name;
+        this.description = description;
+        this.aliases = aliases;
+        this.trueValues = trueValues;
+        this.falseValues = falseValues;
+        validateAliases(new AliasChecker());
     }
 
     @Override
@@ -32,4 +45,14 @@ public class BooleanOption implements Option<Boolean>{
     public Boolean getValue() {
         return value;
     }
+
+    public void setValue(Boolean value) {
+    }
+    public Set<String> getTrueValues() {
+        return trueValues;
+    }
+    public Set<String> getFalseValues() {
+        return falseValues;
+    }
+
 }
